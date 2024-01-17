@@ -44,10 +44,12 @@ class bird {
   void checkCollisions() {
     if (yPos > 800) {
       end = false;
+      hitSound.trigger();
     }
     for (int i = 0; i < 3; i++) {
       if ((xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
         end = false;
+        hitSound.trigger();
       }
     }
   }

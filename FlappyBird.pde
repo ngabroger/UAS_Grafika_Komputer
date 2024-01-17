@@ -3,6 +3,7 @@ import ddf.minim.*;
 Minim minim;
 AudioSample hitSound;
 AudioSample pointSound;
+AudioSample wooshSound;
 
 bird b = new bird();
 pillar[] p = new pillar[3];
@@ -38,6 +39,7 @@ void setup() {
   minim = new Minim(this);
   hitSound = minim.loadSample("assets/sound/sfx_die.wav");
   pointSound = minim.loadSample("assets/sound/sfx_point.wav");
+  wooshSound = minim.loadSample("assets/sound/sfx_woosh.wav");
 
   // Initialize pillars
   for (int i = 0; i < 3; i++) {
@@ -122,6 +124,8 @@ void mousePressed() {
   if (!end) {
     reset();
   }
+  
+  wooshSound.trigger();
 }
 
 void keyPressed() {
