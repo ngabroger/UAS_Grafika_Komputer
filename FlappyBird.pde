@@ -9,13 +9,19 @@ int currentFrame = 0;
 int lastFrameTime = 0;
 int frameDelay = 50;
 int score = 0;
+PFont Font;
+PFont Score;
 
 void setup() {
   size(500, 800);
+  
+  Font = createFont("assets/font/FlappyBird.ttf", 48);
+  Score = createFont("assets/font/flappy-bird-font.ttf", 28);
+  
   for (int i = 0; i < frames.length; i++) {
-    frames[i] = loadImage("bird/frame-" + (i + 1) + ".png");
+    frames[i] = loadImage("assets/bird/frame-" + (i + 1) + ".png");
   }
-  pillarImage = loadImage("pillar/pillar_fluppybird.png");  // Load the pillar image
+  pillarImage = loadImage("assets/pillar/pillar_flappybird.png");  // Load the pillar image
   for (int i = 0; i < 3; i++) {
     p[i] = new pillar(i);
   }
@@ -41,18 +47,22 @@ void draw() {
   if (end) {
     rect(20, 20, 100, 50);
     fill(255);
+    textFont(Score);
     text(score, 30, 58);
   } else {
     rect(150, 100, 200, 50);
     rect(150, 200, 200, 50);
     fill(255);
     if (intro) {
-      text("Flappy Bird", 155, 140);
-      text("Click to Play", 155, 240);
+      textFont(Font);
+      text("Flappy Bird", 175, 140);
+      text("Click to Play", 170, 240);
     } else {
-      text("Game Over", 170, 140);
-      text("Score", 180, 240);
-      text(score, 280, 240);
+      textFont(Font);
+      text("GAME OVER", 180, 140);
+      text("Score", 185, 240);
+      textFont(Score);
+      text(score, 285, 240);
     }
   }
 }
