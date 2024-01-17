@@ -21,7 +21,6 @@ PFont Score;
 
 void setup() {
   size(500, 800);
-
   Font = createFont("assets/font/FlappyBird.ttf", 48);
   Score = createFont("assets/font/flappy-bird-font.ttf", 28);
   

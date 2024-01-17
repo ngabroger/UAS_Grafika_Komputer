@@ -3,7 +3,7 @@ class bird {
   float xPos, yPos, ySpeed;
   
   int currentFrame = 0;
-
+boolean hitSoundPlayed = false;
   bird() {
     xPos = 250;
     yPos = 400;
@@ -41,15 +41,24 @@ class bird {
     }
   }
 
-  void checkCollisions() {
-    if (yPos > 800) {
+   void checkCollisions() {
+    if (!end) {
+      // Pemeriksaan jika belum mati
+      hitSoundPlayed = false;
+      return;
+    }
+
+    if (yPos > 800 && !hitSoundPlayed) {
       end = false;
       hitSound.trigger();
+      hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
     }
+
     for (int i = 0; i < 3; i++) {
-      if ((xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
+      if (!hitSoundPlayed && (xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
         end = false;
         hitSound.trigger();
+        hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
       }
     }
   }
