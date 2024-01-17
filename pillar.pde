@@ -12,3 +12,15 @@ class pillar {
     line(xPos, opening + 100, xPos, 800);
   }
  
+ void checkPosition() {
+    if (xPos < 0) {
+      xPos += (200 * 3);
+      opening = random(600) + 100;
+      cashed = false;
+    }
+    if (xPos < 250 && cashed == false) {
+      cashed = true;
+      score++;
+    }
+  }
+}
