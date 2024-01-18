@@ -4,6 +4,7 @@ Minim minim;
 AudioSample hitSound;
 AudioSample pointSound;
 AudioSample wooshSound;
+AudioSample punchSound;
 
 bird b = new bird();
 pillar[] p = new pillar[3];
@@ -25,7 +26,7 @@ PFont Score;
 void setup() {
   size(500, 800);
 
-  frameRate(60);
+  
   background = new Background("assets/background/bg(1).png");
   Font = createFont("assets/font/FlappyBird.ttf", 48);
   Score = createFont("assets/font/flappy-bird-font.ttf", 28);
@@ -48,6 +49,7 @@ void setup() {
 
   // Initialize Minim and load sound files
   minim = new Minim(this);
+  punchSound = minim.loadSample("assets/sound/sfx_punch.wav");
   hitSound = minim.loadSample("assets/sound/sfx_die.wav");
   pointSound = minim.loadSample("assets/sound/sfx_point.wav");
   wooshSound = minim.loadSample("assets/sound/sfx_woosh.wav");
