@@ -3,6 +3,9 @@ pillar[] p = new pillar[3];
 PImage[] frames = new PImage[4];
 PImage pillarImage;
 
+Background background;
+Cloud[] clouds = new Cloud[3];
+
 boolean end = false;
 boolean intro = true;
 int currentFrame = 0;
@@ -14,6 +17,8 @@ PFont Score;
 
 void setup() {
   size(500, 800);
+  frameRate(60);
+  background = new Background("assets/background/bg(1).png");
   
   Font = createFont("assets/font/FlappyBird.ttf", 48);
   Score = createFont("assets/font/flappy-bird-font.ttf", 28);
@@ -22,13 +27,28 @@ void setup() {
     frames[i] = loadImage("assets/bird/frame-" + (i + 1) + ".png");
   }
   pillarImage = loadImage("assets/pillar/pillar_flappybird.png");  // Load the pillar image
+    
+    for (int i = 0; i < clouds.length; i++) {
+      clouds[i] = new Cloud("assets.cloud/cloud.png", random(width), random(height), random(50, 100)); //Load cloud image      
+    }
+    
   for (int i = 0; i < 3; i++) {
     p[i] = new pillar(i);
+    
   }
 }
 
 void draw() {
-  background(0);
+  background.draw();
+   //background(135, 206, 250);
+
+  
+// Gambar awan
+  for (int i = 0; i < clouds.length; i++) {
+    clouds[i].update();
+    clouds[i].draw();
+  }
+  
   if (end) {
     b.move();
   }
