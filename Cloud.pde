@@ -6,14 +6,14 @@ class Cloud {
   Cloud(String imagePath, float x, float y, float size){
     cloudImage = loadImage("assets/cloud/cloud.png");
     this.x = x;
-    this.y = y;
+    this.y = 100;
     this.size = size;
   }
   
   void update() {
-    x += speed;
-    if (x>width){
-      x -= size;
+    x -= speed; // Menggulir awan ke kiri
+    if (x + size < 0){ // Memulai kembali dari sisi kanan jika mencapai batas kiri
+      x = width;
       y = random(50, 100);
     }
   }
