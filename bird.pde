@@ -3,6 +3,8 @@ class bird {
   float xPos, yPos, ySpeed;
   
   int currentFrame = 0;
+  boolean hitSoundPlayed = false;
+  boolean punchSoundPlayed = false;
 
   bird() {
     xPos = 250;
@@ -41,13 +43,31 @@ class bird {
     }
   }
 
-  void checkCollisions() {
-    if (yPos > 800) {
-      end = false;
+   void checkCollisions() {
+    if (!end) {
+      // Pemeriksaan jika belum mati
+      hitSoundPlayed = false;
+      punchSoundPlayed = false;
+      return;
     }
+
+    if (yPos > 800 && !hitSoundPlayed) {
+      end = false;
+      hitSound.trigger();
+      hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
+    }
+
     for (int i = 0; i < 3; i++) {
-      if ((xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
+      if (!hitSoundPlayed && (xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
         end = false;
+         // Set variabel menjadi true setelah suara diputar
+      }
+      
+      // Check collision for the second sound
+      if (!punchSoundPlayed && (xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
+        end = false;
+        punchSound.trigger();
+        punchSoundPlayed = true; // Set variabel menjadi true setelah suara kedua diputar
       }
     }
   }

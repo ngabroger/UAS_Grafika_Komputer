@@ -25,6 +25,7 @@ class pillar {
     if (xPos < 250 && !cashed) {
       cashed = true;
       score++;
+      pointSound.trigger();
     }
   }
 }
