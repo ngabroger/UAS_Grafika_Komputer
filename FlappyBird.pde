@@ -29,7 +29,7 @@ void setup() {
   
   background = new Background("assets/background/bg(1).png");
   Font = createFont("assets/font/FlappyBird.ttf", 48);
-  Score = createFont("assets/font/flappy-bird-font.ttf", 28);
+  Score = createFont("assets/font/FlappyBird-Score.ttf", 28);
   
 
 
@@ -93,13 +93,13 @@ void draw() {
     p[i].checkPosition();
   }
   
-  fill(0);
+  fill(222, 133, 18);
   stroke(255);
   textSize(32);
   
   // If the game is over, display the score
   if (end) {
-    rect(20, 20, 100, 50);
+    rect(20, 20, 55, 50);
     fill(255);
     textFont(Score);
     text(score, 30, 58);
