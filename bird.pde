@@ -33,42 +33,43 @@ class bird {
   }
 
   void drag() {
-    ySpeed += 0.4;
+    ySpeed += 1;
   }
 
   void move() {
     yPos += ySpeed;
     for (int i = 0; i < 3; i++) {
-      p[i].xPos -= 3;
+      p[i].xPos -= 4;
     }
   }
 
    void checkCollisions() {
-    if (!end) {
-      // Pemeriksaan jika belum mati
-      hitSoundPlayed = false;
-      punchSoundPlayed = false;
-      return;
-    }
+  if (!end) {
+    // Pemeriksaan jika belum mati
+    hitSoundPlayed = false;
+    punchSoundPlayed = false;
+    return;
+  }
 
-    if (yPos > 800 && !hitSoundPlayed) {
+  if (yPos > 800 && !hitSoundPlayed) {
+    end = false;
+    hitSound.trigger();
+    hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
+  }
+
+  for (int i = 0; i < 3; i++) {
+    if (!hitSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
       end = false;
       hitSound.trigger();
       hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
     }
 
-    for (int i = 0; i < 3; i++) {
-      if (!hitSoundPlayed && (xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
-        end = false;
-         // Set variabel menjadi true setelah suara diputar
-      }
-      
-      // Check collision for the second sound
-      if (!punchSoundPlayed && (xPos < p[i].xPos + 10 && xPos > p[i].xPos - 10) && (yPos < p[i].opening - 100 || yPos > p[i].opening + 100)) {
-        end = false;
-        punchSound.trigger();
-        punchSoundPlayed = true; // Set variabel menjadi true setelah suara kedua diputar
-      }
+    // Check collision for the second sound
+    if (!punchSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
+      end = false;
+      punchSound.trigger();
+      punchSoundPlayed = true; // Set variabel menjadi true setelah suara kedua diputar
     }
   }
+}
 }
