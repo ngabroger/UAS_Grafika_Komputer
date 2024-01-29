@@ -11,6 +11,7 @@ pillar[] p = new pillar[3];
 PImage[] frames = new PImage[4];
 PImage pillarImage;
 
+Background2 background2;
 Background background;
 Cloud[] clouds = new Cloud[3];
 
@@ -31,9 +32,9 @@ float grassWaveAmplitude = 10; // Amplitudo gelombang rumput
 void setup() {
   size(500, 800);
 
-  
+  background2 = new Background2("assets/background/bg-flappy-intro.png");
   background = new Background("assets/background/bg(1).png");
-  Font = createFont("assets/font/FlappyBird.ttf", 48);
+  Font = createFont("assets/font/FlappyBirdReguler2.ttf", 35);
   Score = createFont("assets/font/FlappyBird-Score.ttf", 28);
   
 
@@ -114,7 +115,7 @@ void draw() {
     p[i].checkPosition();
   }
   
-  fill(222, 133, 18);
+  fill(255, 133, 18);
   stroke(255);
   textSize(32);
   
@@ -131,18 +132,40 @@ void draw() {
     fill(255);
     
     if (intro) {
+      background2.draw();
+      b.drawBird();
       textFont(Font);
+<<<<<<< HEAD
       text("Flappy Bird", 175, 140);
       text("Click to Play", 170, 240);
       
+=======
+      fill(255, 133, 18);
+      drawTextWithShadow("Flappy Bird", 167, 250, 3);
+      drawTextWithShadow("Click to Play", 155, 300, 3);
+      // cloud intro
+      for (int i = 0; i < clouds.length; i++) {
+        clouds[i].update();
+        clouds[i].draw();
+      }
+
+>>>>>>> 1cf53b315dad3ff7939d0bb5427d40b24ee46f6e
     } else {
       textFont(Font);
-      text("GAME OVER", 180, 140);
-      text("Score", 185, 240);
+      text("GAME OVER", 175, 135);
+      text("Score:", 185, 236);
       textFont(Score);
-      text(score, 285, 240);
+      text(score, 292, 237);
     }
   }
+}
+
+void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
+  fill(255); // Warna bayangan hitam
+  textSize(32);
+  text(text, x + shadowOffset, y + shadowOffset);
+  fill(255, 133, 18); // Warna teks asli
+  text(text, x, y);
 }
 
 void reset() {
