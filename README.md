@@ -1,6 +1,6 @@
 <div align='center'>
 # Flappy Bird Processing Project
-</div
+</div>
 
 <div align="center">
    <img src="https://github.com/ngabroger/UAS_Grafika_Komputer/assets/106647794/c73cc53d-1bdb-4d7e-8382-5bbe2a680e68" alt="Animation" style="width:300px;     height:500px;">
