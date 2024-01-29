@@ -17,6 +17,8 @@ Cloud[] clouds = new Cloud[3];
 
 boolean end = false;
 boolean intro = true;
+boolean waitingForReset = false;
+int resetTime;
 int currentFrame = 0;
 int lastFrameTime = 0;
 int frameDelay = 50;
@@ -152,6 +154,15 @@ void draw() {
       text(score, 292, 237);
     }
   }
+  if (end && waitingForReset) {
+    int currentTime = millis();
+
+    // Wait for 3 seconds before resetting the game
+    if (currentTime - resetTime >= 3000) {
+      reset();
+      waitingForReset = false;
+    }
+  }
 }
 
 void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
@@ -174,6 +185,13 @@ void reset() {
     p[i].cashed = false;
   }
 }
+void birdDied() {
+  hitSound.trigger();
+  punchSound.trigger();
+  waitingForReset = true;
+  resetTime = millis(); // Record the current time
+}
+
 
 void mousePressed() {
   // Trigger bird jump and set intro to false
@@ -195,7 +213,7 @@ void keyPressed() {
   
   // If the game is not over, reset the game
   if (!end) {
-    reset();
+    birdDied();
   }
 }
 
