@@ -62,8 +62,6 @@ class bird {
   for (int i = 0; i < 3; i++) {
     if (!hitSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
       end = false;
-      hitSound.trigger();
-      hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
     }
 
     // Check collision for the second sound
