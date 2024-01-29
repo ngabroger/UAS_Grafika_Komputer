@@ -34,14 +34,14 @@ class bird {
 
   void drag() {
 
-    ySpeed += 0.7;
+    ySpeed += 0.5;
 
   }
 
   void move() {
     yPos += ySpeed;
     for (int i = 0; i < 3; i++) {
-      p[i].xPos -= 4;
+      p[i].xPos -= 3;
     }
   }
 
