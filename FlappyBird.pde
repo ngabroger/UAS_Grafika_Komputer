@@ -23,6 +23,11 @@ int score = 0;
 PFont Font;
 PFont Score;
 
+//Rumput
+float grassHeight = 50; // Tinggi rumput
+float grassWaveFrequency = 0.05; // Frekuensi gelombang rumput
+float grassWaveAmplitude = 10; // Amplitudo gelombang rumput
+
 void setup() {
   size(500, 800);
 
@@ -62,9 +67,28 @@ void setup() {
 }
 
 void draw() {
-  background.draw();
-   //background(135, 206, 250);
+  //background.draw();
+   background(135, 206, 250);
 
+//Rumput (Code Statis)
+   fill(50, 205, 50); // Warna hijau untuk rumput
+
+  // Gambar gelombang rumput
+  beginShape();
+  for (float x = 0; x < width; x += 5) {
+    float y = height - grassHeight + sin(x * grassWaveFrequency) * grassWaveAmplitude;
+    vertex(x, y);
+  }
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+//Rumput (Code Gerak)
+  //drawGrass();
+
+ //Rumput di bagian bawah (code)
+  //fill(50, 205, 50); // Warna hijau untuk rumput
+  //rect(0, height - 50, width, 50); // Gambar segmen rumput
   
 // Gambar awan
   for (int i = 0; i < clouds.length; i++) {
@@ -122,6 +146,25 @@ void draw() {
     }
   }
 }
+
+//void drawGrass() {
+//  // Set grass color
+//  fill(50, 205, 55);
+
+//  // Set the amplitude and frequency of the waves
+//  float amplitude = 25;
+//  float frequency = 0.025;
+
+//  // Draw grass waves
+//  for (int y = height - 25; y < height; y += 5) { 
+//    beginShape();
+//    for (float x = 0; x <= width; x += 5) {
+//      float wave = amplitude * sin(frequency * x + millis() * 0.001);
+//      vertex(x, y + wave);
+//    }
+//    endShape();
+//  }
+//}
 
 void reset() {
   // Set the game state to over and reset values
