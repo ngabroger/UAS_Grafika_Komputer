@@ -135,11 +135,6 @@ void draw() {
       background2.draw();
       b.drawBird();
       textFont(Font);
-<<<<<<< HEAD
-      text("Flappy Bird", 175, 140);
-      text("Click to Play", 170, 240);
-      
-=======
       fill(255, 133, 18);
       drawTextWithShadow("Flappy Bird", 167, 250, 3);
       drawTextWithShadow("Click to Play", 155, 300, 3);
@@ -149,7 +144,6 @@ void draw() {
         clouds[i].draw();
       }
 
->>>>>>> 1cf53b315dad3ff7939d0bb5427d40b24ee46f6e
     } else {
       textFont(Font);
       text("GAME OVER", 175, 135);
