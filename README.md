@@ -1,5 +1,5 @@
 <div align='center'>
-# Flappy Bird Processing Project
+   <h1>Flappy Bird Processing Project</h1>
 </div>
 
 <div align="center">
