@@ -1,5 +1,7 @@
 # Flappy Bird Processing Project
 
+https://github.com/ngabroger/UAS_Grafika_Komputer/assets/106647794/c5c7a838-3842-4f67-8fb4-1de57f4a57b6
+
 ## Overview
 
 This repository contains the collaborative efforts of the team to create a Flappy Bird game using the Processing programming language. The project members are:
