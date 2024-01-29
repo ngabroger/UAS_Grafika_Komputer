@@ -1,6 +1,6 @@
 # Flappy Bird Processing Project
 
-![Uploading FlappyBird 2024-01-30 00-31-16.gif…]()
+![FlappyBird 2024-01-30 00-31-16](https://github.com/ngabroger/UAS_Grafika_Komputer/assets/106647794/c73cc53d-1bdb-4d7e-8382-5bbe2a680e68)
 
 ## Overview
 
