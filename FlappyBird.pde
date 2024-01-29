@@ -11,6 +11,7 @@ pillar[] p = new pillar[3];
 PImage[] frames = new PImage[4];
 PImage pillarImage;
 
+Background2 background2;
 Background background;
 Cloud[] clouds = new Cloud[3];
 
@@ -23,12 +24,17 @@ int score = 0;
 PFont Font;
 PFont Score;
 
+//Rumput
+float grassHeight = 75; // Tinggi rumput
+float grassWaveFrequency = 0.05; // Frekuensi gelombang rumput
+float grassWaveAmplitude = 10; // Amplitudo gelombang rumput
+
 void setup() {
   size(500, 800);
 
-  
+  background2 = new Background2("assets/background/bg-flappy-intro.png");
   background = new Background("assets/background/bg(1).png");
-  Font = createFont("assets/font/FlappyBird.ttf", 48);
+  Font = createFont("assets/font/FlappyBirdReguler2.ttf", 35);
   Score = createFont("assets/font/FlappyBird-Score.ttf", 28);
   
 
@@ -62,9 +68,25 @@ void setup() {
 }
 
 void draw() {
-  background.draw();
-   //background(135, 206, 250);
+  //background.draw();
+   background(135, 206, 250);
 
+//Rumput (Code Gelombang Statis)
+   fill(50, 205, 50); // Warna hijau untuk rumput
+
+  // //Gambar gelombang rumput
+  beginShape();
+  for (float x = 0; x <= width; x += 5) {
+    float y = height - grassHeight + sin(x * grassWaveFrequency) * grassWaveAmplitude;
+    vertex(x, y);
+  }
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+ //Rumput di bagian bawah (code)
+  fill(150, 75, 0); // Warna hijau untuk rumput
+  rect(0, height - 50, width, 50); // Gambar segmen rumput
   
 // Gambar awan
   for (int i = 0; i < clouds.length; i++) {
@@ -93,7 +115,7 @@ void draw() {
     p[i].checkPosition();
   }
   
-  fill(222, 133, 18);
+  fill(255, 133, 18);
   stroke(255);
   textSize(32);
   
@@ -110,17 +132,34 @@ void draw() {
     fill(255);
     
     if (intro) {
+      background2.draw();
+      b.drawBird();
       textFont(Font);
-      text("Flappy Bird", 175, 140);
-      text("Click to Play", 170, 240);
+      fill(255, 133, 18);
+      drawTextWithShadow("Flappy Bird", 167, 250, 3);
+      drawTextWithShadow("Click to Play", 155, 300, 3);
+      // cloud intro
+      for (int i = 0; i < clouds.length; i++) {
+        clouds[i].update();
+        clouds[i].draw();
+      }
+
     } else {
       textFont(Font);
-      text("GAME OVER", 180, 140);
-      text("Score", 185, 240);
+      text("GAME OVER", 175, 135);
+      text("Score:", 185, 236);
       textFont(Score);
-      text(score, 285, 240);
+      text(score, 292, 237);
     }
   }
+}
+
+void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
+  fill(255); // Warna bayangan hitam
+  textSize(32);
+  text(text, x + shadowOffset, y + shadowOffset);
+  fill(255, 133, 18); // Warna teks asli
+  text(text, x, y);
 }
 
 void reset() {

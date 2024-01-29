@@ -33,7 +33,9 @@ class bird {
   }
 
   void drag() {
-    ySpeed += 0.5;
+
+    ySpeed += 0.7;
+
   }
 
   void move() {
