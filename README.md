@@ -30,3 +30,7 @@ Follow these steps to run the Flappy Bird game on your local machine:
 
    ```bash
    git clone https://github.com/ngabroger/UAS_Grafika_Komputer.git
+
+3. **open and execute the main files** Please ensure that you open the FlappyBird.pde files, because that is the file you wanna make sure to be opened and executed.
+
+4. **Don't forget to have fun** don't forget to having the best time of your life.
