@@ -1,3 +1,4 @@
+// Membuat class untuk background
 class Background {
   PImage backgroundImage;
   
@@ -10,6 +11,8 @@ class Background {
   }
 }
 
+
+// Membuat class untuk background 2
 class Background2 {
   PImage backgroundImage;
   

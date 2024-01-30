@@ -44,32 +44,34 @@ class bird {
       p[i].xPos -= 3;
     }
   }
-
-   void checkCollisions() {
-  if (!end) {
-    // Pemeriksaan jika belum mati
-    hitSoundPlayed = false;
-    punchSoundPlayed = false;
-    return;
-  }
-
-  if (yPos > 800 && !hitSoundPlayed) {
-    end = false;
-    hitSound.trigger();
-    hitSoundPlayed = true; // Set variabel menjadi true setelah suara diputar
-  }
-
-  for (int i = 0; i < 3; i++) {
-    if (!hitSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
-      end = false;
+  
+  // Mengecek benturan
+  void checkCollisions() {
+    if (!end) {
+      // Pemeriksaan jika belum mati
+      hitSoundPlayed = false;
+      punchSoundPlayed = false;
+      return;
     }
-
-    // Check collision for the second sound
-    if (!punchSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
+  
+    if (yPos > 800 && !hitSoundPlayed) {
       end = false;
-      punchSound.trigger();
-      punchSoundPlayed = true; // Set variabel menjadi true setelah suara kedua diputar
+      hitSound.trigger();
+      hitSoundPlayed = true;
     }
+  
+    // Loop untuk memeriksa tabrakan dengan setiap tiang
+    for (int i = 0; i < 3; i++) {
+      if (!hitSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
+        end = false;
+      }
+  
+      // Check collision for the second sound
+      if (!punchSoundPlayed && (xPos + 20 > p[i].xPos && xPos - 20 < p[i].xPos + 50) && (yPos + 20 < p[i].opening - 100 || yPos - 20 > p[i].opening + 100)) {
+        end = false;
+        punchSound.trigger();
+        punchSoundPlayed = true; // Set variabel menjadi true setelah suara kedua diputar
+      }
   }
 }
 }
