@@ -180,6 +180,13 @@ void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
 // Fungsi untuk mereset permainan
 void reset() {
   // Setel status permainan menjadi berakhir dan reset nilai
+
+}
+
+// Fungsi yang dipanggil ketika burung mati
+void birdDied() {
+  waitingForReset = true;
+  resetTime = millis();
   end = true;
   score = 0;
   b.yPos = 400;
@@ -191,14 +198,6 @@ void reset() {
   }
 }
 
-// Fungsi yang dipanggil ketika burung mati
-void birdDied() {
-  hitSound.trigger();
-  punchSound.trigger();
-  waitingForReset = true;
-  resetTime = millis();
-}
-
 
 void mousePressed() {
   // Trigger bird jump and set intro to false
@@ -207,7 +206,7 @@ void mousePressed() {
   
   // If the game is not over, reset the game
   if (!end) {
-    reset();
+    birdDied();
   }
   
   wooshSound.trigger();
