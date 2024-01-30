@@ -46,12 +46,11 @@ void setup() {
     frames[i] = loadImage("assets/bird/frame-" + (i + 1) + ".png");
   }
 
+  // Load bird frames
+  for (int i = 0; i < clouds.length; i++) {
+     clouds[i] = new Cloud("assets.cloud/cloud.png", random(width), random(height), random(50, 100)); //Load cloud image      
+  }
     
-    for (int i = 0; i < clouds.length; i++) {
-      clouds[i] = new Cloud("assets.cloud/cloud.png", random(width), random(height), random(50, 100)); //Load cloud image      
-    }
-    
-  
   // Load the pillar image
   pillarImage = loadImage("assets/pillar/pillar_flappybird.png");
 
@@ -71,10 +70,10 @@ void setup() {
 
 void draw() {
   //background.draw();
-   background(135, 206, 250);
+  background(135, 206, 250);
 
-//Rumput (Code Gelombang Statis)
-   fill(50, 205, 50); // Warna hijau untuk rumput
+  //Rumput (Code Gelombang Statis)
+  fill(50, 205, 50); // Warna hijau untuk rumput
 
   // //Gambar gelombang rumput
   beginShape();
@@ -117,18 +116,19 @@ void draw() {
     p[i].checkPosition();
   }
   
+  // Mengatur warna isian dan garis, ukuran teks, dan atribut lainnya
   fill(255, 133, 18);
   stroke(255);
   textSize(32);
   
-  // If the game is over, display the score
+  // Jika permainan berakhir, tampilkan skor
   if (end) {
     rect(20, 20, 55, 50);
     fill(255);
     textFont(Score);
     text(score, 30, 58);
   } else {
-    // Display intro screen or game over screen
+    // Menampilkan layar intro atau layar game over
     rect(150, 100, 200, 50);
     rect(150, 200, 200, 50);
     fill(255);
@@ -140,7 +140,7 @@ void draw() {
       fill(255, 133, 18);
       drawTextWithShadow("Flappy Bird", 167, 250, 3);
       drawTextWithShadow("Click to Play", 155, 300, 3);
-      // cloud intro
+      // Menggambar awan pada layar intro
       for (int i = 0; i < clouds.length; i++) {
         clouds[i].update();
         clouds[i].draw();
@@ -154,10 +154,12 @@ void draw() {
       text(score, 292, 237);
     }
   }
+  
+  // Jika permainan berakhir dan menunggu reset
   if (end && waitingForReset) {
     int currentTime = millis();
 
-    // Wait for 3 seconds before resetting the game
+    // Tunggu selama 3 detik sebelum mereset permainan
     if (currentTime - resetTime >= 3000) {
       reset();
       waitingForReset = false;
@@ -165,6 +167,8 @@ void draw() {
   }
 }
 
+
+// Fungsi untuk menampilkan teks dengan bayangan
 void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
   fill(255); // Warna bayangan hitam
   textSize(32);
@@ -173,23 +177,26 @@ void drawTextWithShadow(String text, float x, float y, float shadowOffset) {
   text(text, x, y);
 }
 
+// Fungsi untuk mereset permainan
 void reset() {
-  // Set the game state to over and reset values
+  // Setel status permainan menjadi berakhir dan reset nilai
   end = true;
   score = 0;
   b.yPos = 400;
   
-  // Move pillars to initial position and reset cashed status
+  // Pindahkan tiang ke posisi awal
   for (int i = 0; i < 3; i++) {
     p[i].xPos += 550;
     p[i].cashed = false;
   }
 }
+
+// Fungsi yang dipanggil ketika burung mati
 void birdDied() {
   hitSound.trigger();
   punchSound.trigger();
   waitingForReset = true;
-  resetTime = millis(); // Record the current time
+  resetTime = millis();
 }
 
 
